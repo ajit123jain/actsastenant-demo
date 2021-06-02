@@ -29,10 +29,10 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
-
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
 
+  # config.action_dispatch.tld_length = 0
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -61,4 +61,12 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  config.hosts << "app.lvh.me"
+  config.hosts << "lvh.me"
+  config.hosts << "poplify.lvh.me"
+  config.hosts << "dev.lvh.me"
+  # Make app the standard subdomain
+  config.after_initialize do
+    Rails.application.routes.default_url_options[:host] = 'app.lvh.me:3000'
+  end # after_initialize
 end

@@ -11,21 +11,25 @@
     - if current_user
       %ul.navbar-nav.mr-auto
         %li.nav-item{class: "#{'active font-weight-bold' if current_page?(members_path)}"}
-          = link_to members_path, class: 'nav-link' do
+          = link_to members_url(subdomain: "#{@current_tenant_name}"), class: 'nav-link' do
             .fa.fa-home
             Members
         %li.nav-item{class: "#{'active font-weight-bold' if current_page?(users_path)}"}
-          = link_to users_path, class: 'nav-link' do
+          = link_to users_url(subdomain: "#{@current_tenant_name}"), class: 'nav-link' do
             .fa.fa-home
             Users
         %li.nav-item{class: "#{'active font-weight-bold' if current_page?(tenants_path)}"}
-          = link_to tenants_path, class: 'nav-link' do
+          = link_to tenants_url(subdomain: "#{@current_tenant_name}"), class: 'nav-link' do
             .fa.fa-home
             Tenants
         %li.nav-item{class: "#{'active font-weight-bold' if current_page?(my_tenants_path)}"}
-          = link_to my_tenants_path, class: 'nav-link' do
+          = link_to my_tenants_url(subdomain: "#{@current_tenant_name}"), class: 'nav-link' do
             .fa.fa-home
             My Tenants
+        %li.nav-item{class: "#{'active font-weight-bold' if current_page?(members_path)}"}
+          = link_to posts_url(subdomain: "#{current_user.tenant.subdomain}"), class: 'nav-link' do
+            .fa.fa-home
+            Posts    
         %li.nav-item
           .nav-link
             - if current_tenant.present?

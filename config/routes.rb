@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  # root 'home#index'
+  # get 'home/index'
+
   root 'home#index'
-  get 'home/index'
 
   devise_for :users
 
@@ -19,5 +21,13 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:index, :show]
+  # constraints :subdomain => /dev|poplify/ do
+  #   resources :posts
+  # end
+  
+  constraints SubdomainConstraint do
+    get 'dashboard/index'
+    resources :posts
+  end # constraints
 
 end

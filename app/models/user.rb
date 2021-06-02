@@ -14,4 +14,8 @@ class User < ApplicationRecord
   def to_s
     email
   end
+
+  def subdomain 
+    self.tenant.subdomain
+  end
 end
